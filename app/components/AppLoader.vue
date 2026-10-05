@@ -1,15 +1,10 @@
 <script setup lang="ts">
-// Plays once per browser session, on the very first real page load only —
-// internal navigations already have their own cascade (usePageTransition).
-// Timed counter + stopmotion visual, closing on the same bar-cascade
-// language used everywhere else on the site.
-//
-// Visibility is decided from a cookie (not sessionStorage) so the SAME
-// value is known during SSR: the loader is either part of the very first
-// HTML paint, or not rendered at all — never flashed in after the real
-// page has already been visible for a moment.
-const loadedCookie = useCookie<boolean | null>('wowlips_loaded', { sameSite: 'lax' })
-const visible = ref(loadedCookie.value !== true)
+// Plays on every real page load (hard nav / reload) — internal SPA
+// navigations never remount this component (it lives in app.vue, outside
+// <NuxtPage>), so it naturally never replays on those; they already have
+// their own cascade (usePageTransition). Timed counter + stopmotion
+// visual, closing on the same bar-cascade language used everywhere else.
+const visible = ref(true)
 
 const frames = [
   '/images/products/creme-agrumes.jpg',
@@ -27,7 +22,6 @@ const introRefs = ref<HTMLElement[]>([])
 
 function finish() {
   if (cycleTimer) clearInterval(cycleTimer)
-  loadedCookie.value = true
   useNuxtApp().$lenis?.start()
   visible.value = false
 }
