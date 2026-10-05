@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: theme('colors.cream.DEFAULT');
+  scrollbar-color: theme('colors.ink.DEFAULT') transparent;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  @apply bg-cream text-ink font-sans antialiased;
+  cursor: none;
+}
+
+@media (max-width: 860px), (hover: none) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: theme('colors.accent.DEFAULT');
+  color: theme('colors.cream.DEFAULT');
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Oversized display type used for hero + section titles, echoing the
+   condensed-grotesk "giant letters" language of the reference site. */
+.text-hero {
+  font-family: theme('fontFamily.display');
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.text-label {
+  font-family: theme('fontFamily.mono');
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+}
+
+.hairline {
+  border-color: theme('colors.ink.DEFAULT' / 15%);
+}
+
+/* Split-text word/char wrappers need overflow hidden on their parent line */
+.split-line {
+  overflow: hidden;
+}
+
+[data-reveal] {
+  opacity: 0;
+}
