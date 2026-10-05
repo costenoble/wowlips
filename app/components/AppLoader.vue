@@ -53,7 +53,7 @@ onMounted(() => {
   const counter = { value: 0 }
   const tl = $gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: finish })
 
-  tl.to(introRefs.value, { yPercent: 0, opacity: 1, duration: 0.6, stagger: 0.08 })
+  tl.to(introRefs.value, { y: 0, opacity: 1, duration: 0.6, stagger: 0.08 })
   tl.to(
     counter,
     {
@@ -86,10 +86,10 @@ onBeforeUnmount(() => {
       class="h-full w-1/5 bg-cream"
     />
 
-    <div class="pointer-events-none absolute inset-0 z-10 flex flex-col justify-between px-5 py-10 text-ink md:px-10">
+    <div class="pointer-events-none absolute inset-0 z-10 flex flex-col px-5 py-10 text-ink md:px-10">
       <div
         :ref="(el) => { if (el) introRefs[0] = el as HTMLElement }"
-        class="flex translate-y-full items-center justify-between text-label text-ink-soft opacity-0"
+        class="flex translate-y-6 items-center justify-between text-label text-ink-soft opacity-0"
       >
         <span>WoWLips</span>
         <span>Chargement</span>
@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
 
       <div
         :ref="(el) => { if (el) introRefs[1] = el as HTMLElement }"
-        class="flex translate-y-full items-center justify-between opacity-0"
+        class="flex flex-1 translate-y-6 flex-col items-center justify-center gap-8 opacity-0"
       >
         <div class="relative h-40 w-32 overflow-hidden bg-cream-200 md:h-56 md:w-44">
           <img
@@ -115,7 +115,7 @@ onBeforeUnmount(() => {
 
       <div
         :ref="(el) => { if (el) introRefs[2] = el as HTMLElement }"
-        class="translate-y-full opacity-0"
+        class="translate-y-6 text-center opacity-0"
       >
         <p class="font-mono text-xs uppercase tracking-widest2 text-ink-soft">Soin des lèvres, révélé</p>
       </div>
